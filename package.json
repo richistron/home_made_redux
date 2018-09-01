@@ -1,23 +1,26 @@
 {
-  "name": "tsclient",
-  "version": "0.0.1",
-  "description": "client for garson api",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --config=webpack.config.js",
-    "server": "node index.js",
-    "dev:server": "npm-run-parallel webpack server"
-  },
-  "author": "Ricardo Rivas <richistron@gmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "html-webpack-plugin": "3.2.0",
-    "npm-run-parallel": "^0.6.0",
-    "static-server": "^2.2.1",
-    "ts-loader": "4.5.0",
-    "typescript": "3.0.3",
-    "webpack": "4.17.1",
-    "webpack-cli": "3.1.0"
-  }
+    "name": "tsclient",
+    "version": "0.0.1",
+    "description": "client for garson api",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest --config=jest.conf.json",
+        "webpack": "webpack --config=webpack.config.js",
+        "server": "node index.js",
+        "dev:server": "npm-run-parallel webpack server"
+    },
+    "author": "Ricardo Rivas <richistron@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "@types/jest": "23.3.1",
+        "html-webpack-plugin": "3.2.0",
+        "jest": "23.5.0",
+        "npm-run-parallel": "0.6.0",
+        "static-server": "2.2.1",
+        "ts-jest": "23.1.4",
+        "ts-loader": "4.5.0",
+        "typescript": "3.0.3",
+        "webpack": "4.17.1",
+        "webpack-cli": "3.1.0"
+    }
 }

@@ -1,0 +1,9 @@
+{
+    "moduleFileExtensions": ["js", "json", "jsx", "node", "ts"],
+    "testMatch": ["<rootDir>/**/*.test.ts"],
+    "globals": {
+        "ts-jest": {
+            "tsConfigFile": "tsconfig.json"
+        }
+    }
+}
