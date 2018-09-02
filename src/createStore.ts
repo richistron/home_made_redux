@@ -1,31 +1,36 @@
-import {UserAction, userReducerFunc} from './userReducer'
+import {UserAction, userReducerFunc, UserState} from './userReducer'
 
-interface reducers {
+interface Reducers {
   readonly users: userReducerFunc
   readonly [key: string]: any
 }
 
-const createStore = function(reducers : reducers)  {
-  let state : any = {}
+interface AppState {
+  [index : string ] : UserState
+}
+
+interface GetState {
+  (reducers : Reducers, state?: AppState, action?: UserAction) : AppState
+}
+
+const getState : GetState = (reducers, state, action ) => {
+  const newState : AppState = {}
 
   for (const item in reducers) {
     const reducer = reducers[item]
-    state[item] = reducer(null, null)
+    newState[item] = reducer(state, action)
   }
 
-  return {
-    getState: function () {
-      return state
-    },
+  return newState
+}
 
-    dispatch: function (action : UserAction) {
-      for (const item in reducers) {
-        const reducer = reducers[item]
-        const scope = state[item]
-        state[item] = reducer(scope, action)
-      }
-      return this;
-    }
+const createStore = (reducers : Reducers)  => {
+  let state = getState(reducers)
+
+  return {
+    getState:  () => state,
+
+    dispatch: (action : UserAction) => state = getState(reducers, state, action),
   }
 }
 
