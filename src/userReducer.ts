@@ -1,17 +1,21 @@
 
 export interface UserAction {
-  type: string
-  user: {id: number, name: string}
+  readonly type: string
+  readonly user: {id: number, name: string}
 }
 
 interface user {
-  id: number
-  name: string
+  readonly id: number
+  readonly name: string
 }
 
 interface State {
-  users: user[]
-  isLoading: boolean
+  readonly users: Users
+  readonly isLoading: boolean
+}
+
+interface Users {
+  [index: string] : user
 }
 
 export interface userReducerFunc {
@@ -22,10 +26,11 @@ const userReducer : userReducerFunc = function (state, action) {
   if (state) {
     switch (action.type) {
       case 'add_user': {
-        return {
+        const newState = {
           ...state,
-          users: [...state.users, action.user]
         }
+        newState.users[action.user.id] = action.user
+        return newState;
       }
       default: {
         return state;
@@ -33,7 +38,7 @@ const userReducer : userReducerFunc = function (state, action) {
     }
   }
   return {
-    users: [],
+    users: {},
     isLoading: false,
   }
 }
